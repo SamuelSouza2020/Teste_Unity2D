@@ -39,6 +39,5 @@ public class Bar : MonoBehaviour
     void AddTorque(Rigidbody2D rigid, float force)
     {
         rigid.AddTorque(force);
-        Debug.Log(force);
     }
 }
