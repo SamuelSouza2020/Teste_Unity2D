@@ -8,14 +8,14 @@ public class Player : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        transform.position += (Random.value >= 0.5f) ? (new Vector3(1f, 0)) : (new Vector3(-1f, 0));
+        /*transform.position += (Random.value >= 0.5f) ? (new Vector3(1f, 0)) : (new Vector3(-1f, 0));*/
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
-            Empurrao(10, 5);
+            Empurrao(0, 20);
     }
     void Empurrao(float x, float y)
     {
