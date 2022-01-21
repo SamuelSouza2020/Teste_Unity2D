@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(rig.velocity.magnitude);
+
         if (Input.GetKeyDown(KeyCode.Space))
             Empurrao(0, 20);
     }
