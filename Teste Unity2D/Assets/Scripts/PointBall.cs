@@ -32,6 +32,6 @@ public class PointBall : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         pontB.enabled = false;
-        player.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(0,-5), 0), ForceMode2D.Impulse);
+        player.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-1,-7), 0), ForceMode2D.Impulse);
     }
 }
