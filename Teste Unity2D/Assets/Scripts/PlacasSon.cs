@@ -24,7 +24,7 @@ public class PlacasSon : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-            gameObject.GetComponent<Collider2D>().enabled = true;
+            gameObject.GetComponent<Collider2D>().enabled = false;
             atP.asCores++;
         }
     }
