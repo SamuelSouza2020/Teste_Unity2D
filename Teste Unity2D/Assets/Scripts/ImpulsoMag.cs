@@ -9,12 +9,14 @@ public class ImpulsoMag : MonoBehaviour
     GameObject player;
     float tempoBall = 0, tempSaida = 0;
     Collider2D col;
+    AudioManager audM;
 
     void Start()
     {
         dentro = false;
         player = GameObject.Find("Ball");
         col = GetComponent<Collider2D>();
+        audM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
     void Update()
     {
@@ -32,6 +34,7 @@ public class ImpulsoMag : MonoBehaviour
             {
                 player.GetComponent<Rigidbody2D>().simulated = true;
                 player.GetComponent<Rigidbody2D>().AddForce(new Vector2(1,-12), ForceMode2D.Impulse);
+                audM.auTiro.Play();
                 tempoBall = 0;
                 dentro = false;
             }
@@ -44,6 +47,7 @@ public class ImpulsoMag : MonoBehaviour
             dentro=true;
             col.enabled = false;
             tempSaida = 0;
+            audM.auAlien.Play();
         }
     }
 }

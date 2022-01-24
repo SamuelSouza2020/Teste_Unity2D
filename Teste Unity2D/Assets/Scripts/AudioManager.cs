@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
 
-    public AudioSource audPas;
+    public AudioSource audPas, auAlien, auTiro, auBumf, auBtd;
 
     void Start()
     {

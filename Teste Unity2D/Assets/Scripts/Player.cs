@@ -5,16 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Rigidbody2D rig;
+    AudioManager audM;
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        /*transform.position += (Random.value >= 0.5f) ? (new Vector3(1f, 0)) : (new Vector3(-1f, 0));*/
+        audM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
-
-    // Update is called once per frame
     void Update()
     {
-        //Debug.Log(rig.velocity.magnitude);
 
         if (Input.GetKeyDown(KeyCode.Space))
             Empurrao(0, 20);
@@ -23,5 +21,11 @@ public class Player : MonoBehaviour
     {
         rig.AddForce(new Vector2(x,y), ForceMode2D.Impulse);
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Untagged"))
+        {
+            audM.auBtd.Play();
+        }
+    }
 }
