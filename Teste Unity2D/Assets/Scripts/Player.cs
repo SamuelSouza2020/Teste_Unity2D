@@ -25,14 +25,25 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        gameManager.pontosPlayer++;
         if(collision.gameObject.CompareTag("Untagged"))
         {
             audM.auBtd.Play();
         }
+        if(collision.gameObject.CompareTag("Csom"))
+        {
+            gameManager.pontosPlayer+=2;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        gameManager.pontosPlayer++;
+        if (collision.gameObject.CompareTag("Csom"))
+        {
+            gameManager.pontosPlayer+=2;
+        }
+        if(collision.gameObject.CompareTag("speed"))
+        {
+            gameManager.pontosPlayer++;
+            audM.auSpe.Play();
+        }
     }
 }

@@ -33,7 +33,7 @@ public class ImpulsoMag : MonoBehaviour
             if(tempoBall > 2.2)
             {
                 player.GetComponent<Rigidbody2D>().simulated = true;
-                player.GetComponent<Rigidbody2D>().AddForce(new Vector2(1,-12), ForceMode2D.Impulse);
+                player.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,-40), ForceMode2D.Impulse);
                 audM.auTiro.Play();
                 tempoBall = 0;
                 dentro = false;
