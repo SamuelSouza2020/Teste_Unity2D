@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Csom
   - speed
+  - Dead
   layers:
   - Default
   - TransparentFX

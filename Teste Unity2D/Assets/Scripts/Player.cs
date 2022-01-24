@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     Rigidbody2D rig;
     AudioManager audM;
     GameManager gameManager;
+    [SerializeField]
+    GameObject dead;
 
     public bool libSpace = false;
     void Start()
@@ -50,6 +52,11 @@ public class Player : MonoBehaviour
         {
             gameManager.pontosPlayer++;
             audM.auSpe.Play();
+        }
+        if(collision.gameObject.CompareTag("Dead"))
+        {
+            Instantiate(dead, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }
