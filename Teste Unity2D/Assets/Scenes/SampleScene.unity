@@ -11158,6 +11158,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 595811219}
+  - component: {fileID: 595811220}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -11179,6 +11180,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &595811220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595811218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca62a94c752c3d2418bc817dc5478328, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtPontos: {fileID: 0}
 --- !u!1 &679217354
 GameObject:
   m_ObjectHideFlags: 0
@@ -11396,7 +11410,7 @@ GameObject:
   - component: {fileID: 740047165}
   - component: {fileID: 740047164}
   m_Layer: 5
-  m_Name: Text
+  m_Name: txtPontos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11416,10 +11430,10 @@ RectTransform:
   m_Father: {fileID: 567089235}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.3358718, y: 0.43378127}
-  m_AnchorMax: {x: 0.6668462, y: 0.52400005}
-  m_AnchoredPosition: {x: -1, y: -0.5}
-  m_SizeDelta: {x: 0.6300049, y: 1.5999985}
+  m_AnchorMin: {x: 0.3036924, y: 0.43378127}
+  m_AnchorMax: {x: 0.6951027, y: 0.5358751}
+  m_AnchoredPosition: {x: -0.30000305, y: -0.17749786}
+  m_SizeDelta: {x: -0.13000011, y: -0.35499954}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &740047164
 MonoBehaviour:
@@ -11447,7 +11461,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 60
+    m_MaxSize: 75
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -11984,6 +11998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a142b8b44ad6cb9429dc11b0d4d10e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pontosPlayer: 0
 --- !u!1 &866651536
 GameObject:
   m_ObjectHideFlags: 0

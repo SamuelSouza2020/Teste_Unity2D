@@ -6,10 +6,12 @@ public class Player : MonoBehaviour
 {
     Rigidbody2D rig;
     AudioManager audM;
+    GameManager gameManager;
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         audM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        gameManager = GameObject.Find("Gerenc").GetComponent<GameManager>();
     }
     void Update()
     {
@@ -23,9 +25,14 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        gameManager.pontosPlayer++;
         if(collision.gameObject.CompareTag("Untagged"))
         {
             audM.auBtd.Play();
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        gameManager.pontosPlayer++;
     }
 }

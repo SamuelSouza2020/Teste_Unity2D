@@ -6,7 +6,11 @@ public class AtivPlacas : MonoBehaviour
 {
     public int asCores;
     float tempoCor = 0;
-    // Update is called once per frame
+    GameManager gaM;
+    private void Start()
+    {
+        gaM = GameObject.Find("Gerenc").GetComponent<GameManager>();
+    }
     void Update()
     {
         if(asCores > 2)
@@ -16,6 +20,7 @@ public class AtivPlacas : MonoBehaviour
             {
                 tempoCor = 0;
                 asCores = 0;
+                gaM.pontosPlayer += 100;
             }
         }
     }
