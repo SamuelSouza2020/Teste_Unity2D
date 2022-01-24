@@ -4,34 +4,23 @@ using UnityEngine;
 
 public class PointBall : MonoBehaviour
 {
-    GameObject player;
-    PointEffector2D pontB;
+    Player player;
 
     void Start()
     {
-        player = GameObject.Find("Ball");
-        pontB = GetComponent<PointEffector2D>();
-        pontB.enabled = false;
+        player = GameObject.Find("Ball").GetComponent<Player>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            pontB.enabled = true;
+            player.transform.position = new Vector3(2.67f, -2.7f, 0);
             StartCoroutine(Lancar());
         }
     }
     IEnumerator Lancar()
     {
         yield return new WaitForSeconds(1);
-        pontB.enabled = false;
-        player.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-1,-7), 0), ForceMode2D.Impulse);
+        player.libSpace = true;
     }
 }

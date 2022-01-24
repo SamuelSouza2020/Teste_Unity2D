@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class PlacasSon : MonoBehaviour
 {
+    //Script nos objetos filhos do GameObjeto "base"
+    //Usado para mudar a cor quando a bola encostar.
+
     AtivPlacas atP;
     void Start()
     {
-        atP = GameObject.Find("testBall").GetComponent<AtivPlacas>();
+        //Está variável está ligada ao script do GameObjeto pai "base".
+        atP = transform.GetComponentInParent<AtivPlacas>();
     }
-
-    // Update is called once per frame
     void Update()
     {
+        //Quando o int for igual a 0, volta para cor vermelha e o collider é ativado
         if(atP.asCores == 0)
         {
             gameObject.GetComponent<SpriteRenderer>().color = Color.red;
@@ -23,6 +26,8 @@ public class PlacasSon : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
+            //Quando o player encostar, a cor fica branca, collider é desativado e acrescenta 1 valor na variavel int da 'base'
+            //"base" = GameObjeto pai
             gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             gameObject.GetComponent<Collider2D>().enabled = false;
             atP.asCores++;

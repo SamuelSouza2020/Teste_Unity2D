@@ -7,17 +7,23 @@ public class Player : MonoBehaviour
     Rigidbody2D rig;
     AudioManager audM;
     GameManager gameManager;
+
+    public bool libSpace = false;
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         audM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         gameManager = GameObject.Find("Gerenc").GetComponent<GameManager>();
+        libSpace = false;
     }
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && libSpace)
+        {
             Empurrao(0, 20);
+            libSpace = false;
+        }
     }
     void Empurrao(float x, float y)
     {
