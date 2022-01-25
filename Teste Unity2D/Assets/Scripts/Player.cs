@@ -29,34 +29,35 @@ public class Player : MonoBehaviour
     }
     void Empurrao(float x, float y)
     {
-        rig.AddForce(new Vector2(x,y), ForceMode2D.Impulse);
+        rig.AddForce(new Vector2(x, y), ForceMode2D.Impulse);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Untagged"))
+        if (collision.gameObject.CompareTag("Untagged"))
         {
             audM.auBtd.Play();
         }
-        if(collision.gameObject.CompareTag("Csom"))
+        if (collision.gameObject.CompareTag("Csom"))
         {
-            gameManager.pontosPlayer+=2;
+            gameManager.pontosPlayer += 2;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Csom"))
         {
-            gameManager.pontosPlayer+=2;
+            gameManager.pontosPlayer += 2;
         }
-        if(collision.gameObject.CompareTag("speed"))
+        if (collision.gameObject.CompareTag("speed"))
         {
             gameManager.pontosPlayer++;
             audM.auSpe.Play();
         }
-        if(collision.gameObject.CompareTag("Dead"))
+        if (collision.gameObject.CompareTag("Dead"))
         {
             Instantiate(dead, transform.position, Quaternion.identity);
             Destroy(gameObject);
+            gameManager.mort = true;
         }
     }
 }

@@ -6,18 +6,27 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public int pontosPlayer;
-    void Start()
+    public bool mort = false;
+    ScoreManager sm;
+    private void Start()
     {
-        
+        sm = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
     }
-
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if(Input.GetKeyDown(KeyCode.R))
         {
-
             SceneManager.LoadScene(0);
         }
+        if(mort)
+        {
+            StartCoroutine(Reiniciar());
+        }
+    }
+    IEnumerator Reiniciar()
+    {
+        sm.SalvarScore();
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(0);
     }
 }
