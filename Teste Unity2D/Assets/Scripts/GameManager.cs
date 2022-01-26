@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    /// <summary>
+    /// Este script é responsável por todo o jogo.
+    /// Atraves dele que o jogo reinicia e
+    /// coloca a pontuação do jogador
+    /// </summary>
     public int pontosPlayer;
     public bool mort = false;
     ScoreManager sm;

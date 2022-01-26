@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PointBall : MonoBehaviour
 {
-    //Script para posicionar o player no inicio e liberar o disparo da bola
+    //Script para posicionar a bola no inicio e liberar o disparo
     Player player;
 
     void Start()
