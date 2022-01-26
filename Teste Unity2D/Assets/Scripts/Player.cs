@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    /// <summary>
+    /// Script que gerencia o controle, som, algumas colisões,
+    /// física e a morte da bola.
+    /// </summary>
     Rigidbody2D rig;
     AudioManager audM;
     GameManager gameManager;
