@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class AtivPlacas : MonoBehaviour
 {
+    /// <summary>
+    /// Script Manager do GameObjeto que dar pontos extra.
+    /// Caso o jogador acerte os 3 GameObjetos filho deste GameObjeto,
+    /// é adicionado pontos extra para o jogador.
+    /// </summary>
+
     public int asCores;
     float tempoCor = 0;
     GameManager gaM;
@@ -15,6 +21,10 @@ public class AtivPlacas : MonoBehaviour
     {
         if(asCores > 2)
         {
+            /*
+             * Após acertar os 3 GameObjetos filhos, espera 1
+             * segundo para reiniciar a função do GameObjeto
+             */
             tempoCor += Time.deltaTime;
             if(tempoCor > 1)
             {
