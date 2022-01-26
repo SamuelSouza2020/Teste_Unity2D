@@ -16,11 +16,13 @@ public class PointBall : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             player.transform.position = new Vector3(2.67f, -2.7f, 0);
+            //Chama o metodo IEnumerator
             StartCoroutine(Lancar());
         }
     }
     IEnumerator Lancar()
     {
+        //Função em pausa até passar os segundos "WaitForSeconds(1)"
         yield return new WaitForSeconds(1);
         player.libSpace = true;
     }

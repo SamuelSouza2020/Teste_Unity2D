@@ -74,6 +74,10 @@ public class Player : MonoBehaviour
             gameManager.pontosPlayer++;
             audM.auSpe.Play();
         }
+        if (collision.gameObject.CompareTag("SaidaBall"))
+        {
+            audM.audPas.Play();
+        }
         if (collision.gameObject.CompareTag("Dead"))
         {
             //Aqui é Destruida a bola e chamado o Prefab "Dead"

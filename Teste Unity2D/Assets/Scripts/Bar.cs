@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Bar : MonoBehaviour
 {
+    /// <summary>
+    /// Nesse script é usado para controlar os Flippers
+    /// Utilizando a função Torque
+    /// </summary>
     [SerializeField]
     GameObject lEsq, lDir;
     Rigidbody2D rigEsq, rigDir;

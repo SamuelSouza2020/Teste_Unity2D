@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class ImpulsoMag : MonoBehaviour
 {
+    /// <summary>
+    /// Script usado no cano, onde se a bola
+    /// encostar, ela é puxada e atirada com uma
+    /// força aleatória (Random)
+    /// </summary>
     [SerializeField]
     bool dentro = false;
     GameObject player;
@@ -32,8 +37,9 @@ public class ImpulsoMag : MonoBehaviour
             tempoBall += Time.deltaTime;
             if(tempoBall > 2.2)
             {
+                //Aqui é adicionado o Random.Range que deixa o valor aleatório.
                 player.GetComponent<Rigidbody2D>().simulated = true;
-                player.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,-40), ForceMode2D.Impulse);
+                player.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, Random.Range(-28,-42)), ForceMode2D.Impulse);
                 audM.auTiro.Play();
                 tempoBall = 0;
                 dentro = false;
@@ -44,6 +50,8 @@ public class ImpulsoMag : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
+            //Para não ficar em loop de jogar a bola e puxar
+            //Assim que atira a bola o collider é desativado por 6 segundos.
             dentro=true;
             col.enabled = false;
             tempSaida = 0;
