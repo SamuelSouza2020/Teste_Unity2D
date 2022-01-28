@@ -35,7 +35,7 @@ public class CentImpulso : MonoBehaviour
         yield return new WaitForSeconds(1);
         gameObject.GetComponent<Collider2D>().enabled = false;
         rigPlayer.simulated = true;
-        rigPlayer.AddForce(new Vector2(10, Random.Range(-15, 15) ), ForceMode2D.Impulse);
+        rigPlayer.AddForce(new Vector2(10, Random.Range(-15, 15)), ForceMode2D.Impulse);
         dentro = false;
         yield return new WaitForSeconds(2);
         gameObject.GetComponent<Collider2D>().enabled = true;

@@ -1,25 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AtivBar : MonoBehaviour
 {
-    [SerializeField]
-    GameObject btAtivo, btDesat, bar1, bar2;
+    GameObject btAtivo, bar1, bar2;
+    Text pontos;
     bool passou = false;
     void Start()
     {
-        //btAtivo = GameObject.Find("ButtonAtv");
+        pontos = GameObject.Find("txtPontos").GetComponent<Text>();
         btAtivo = transform.GetChild(0).gameObject;
-        btDesat = transform.GetChild(1).gameObject;
-        bar1 = transform.GetChild(2).gameObject;
-        bar2 = transform.GetChild(3).gameObject;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log(transform.GetChild(0));
+        bar1 = transform.GetChild(1).gameObject;
+        bar2 = transform.GetChild(2).gameObject;
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -28,15 +22,15 @@ public class AtivBar : MonoBehaviour
             passou = !passou;
             if (passou)
             {
-                btAtivo.SetActive(false);
-                btDesat.SetActive(true);
+                btAtivo.GetComponent<SpriteRenderer>().color = Color.red;
+                pontos.color = Color.red;
                 bar1.SetActive(true);
                 bar2.SetActive(true);
             }
             else
             {
-                btAtivo.SetActive(true);
-                btDesat.SetActive(false);
+                btAtivo.GetComponent<SpriteRenderer>().color = Color.white;
+                pontos.color = Color.white;
                 bar1.SetActive(false);
                 bar2.SetActive(false);
             }
