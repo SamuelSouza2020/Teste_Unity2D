@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class Canhao : MonoBehaviour
 {
+    /// <summary>
+    /// Script que puxa a bola e a dispara
+    /// </summary>
     Rigidbody2D rigPlayer;
     bool dentro = false, disp = false;
+    [SerializeField]
+    Vector2 pos, forc;
+    AudioManager audM;
+    private void Start()
+    {
+        audM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
     private void Update()
     {
         if(dentro)
         {
-            rigPlayer.transform.position = Vector3.Lerp(rigPlayer.transform.position, new Vector3(-2.203f, 1.055f, 0), 5 * Time.deltaTime);
+            rigPlayer.transform.position = Vector3.Lerp(rigPlayer.transform.position, pos, 5 * Time.deltaTime);
             if(disp)
             {
                 StartCoroutine(Boom());
@@ -22,20 +32,24 @@ public class Canhao : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Player"))
         {
+            //Aqui pega o rigidbody da bola e tira a velocidade e desativa o simulated
             rigPlayer = col.GetComponent<Rigidbody2D>();
             rigPlayer.velocity = Vector3.zero;
             rigPlayer.simulated = false;
             dentro = true;
             disp = true;
-            //col.transform.position = Vector3.Lerp(col.transform.position, new Vector3(-2.203f, 1.055f, 0), Time.deltaTime);
+            audM.auAlien.Play();
         }
     }
     IEnumerator Boom()
     {
+        //Após passar o tempo que está no parenteses ele ativa o simulated do player
+        //desativa o collider para nao bugar e dispara a bola
         yield return new WaitForSeconds(1);
+        audM.auTiro.Play();
         gameObject.GetComponent<Collider2D>().enabled = false;
         rigPlayer.simulated = true;
-        rigPlayer.AddForce(new Vector2(7, 7), ForceMode2D.Impulse);
+        rigPlayer.AddForce(forc, ForceMode2D.Impulse);
         dentro = false;
         yield return new WaitForSeconds(2);
         gameObject.GetComponent<Collider2D>().enabled = true;

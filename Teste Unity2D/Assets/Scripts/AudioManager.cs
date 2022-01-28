@@ -10,5 +10,5 @@ public class AudioManager : MonoBehaviour
     /// tocado o áudio/efeitos sonoros.
     /// </summary>
     public AudioSource audPas, auAlien, auTiro, 
-        auBumf, auBtd, auSpe;
+        auBumf, auBtd, auSpe, spinball;
 }

@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public class AtivBar : MonoBehaviour
 {
+    /// <summary>
+    /// Script para ativar parede e mudar cor do "Botão" central
+    /// </summary>
     GameObject btAtivo, bar1, bar2;
     Text pontos;
     bool passou = false;
     void Start()
     {
         pontos = GameObject.Find("txtPontos").GetComponent<Text>();
+        //GetChild busca o filho do GameObjeto
         btAtivo = transform.GetChild(0).gameObject;
         bar1 = transform.GetChild(1).gameObject;
         bar2 = transform.GetChild(2).gameObject;

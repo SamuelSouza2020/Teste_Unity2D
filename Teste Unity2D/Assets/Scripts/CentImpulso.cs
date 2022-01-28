@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class CentImpulso : MonoBehaviour
 {
+    /// <summary>
+    /// Script que centraliza a bola e a dispara aleatoriamente.
+    /// </summary>
     Rigidbody2D rigPlayer;
     bool dentro = false, disp = false;
+    AudioManager audM;
+    private void Start()
+    {
+        audM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
     private void Update()
     {
+        //Leva a bola até a posição do Vector3 e depois chama o numaretor que vai disparar a bola.
         if (dentro)
         {
             rigPlayer.transform.position = Vector3.Lerp(rigPlayer.transform.position, new Vector3(-1.977f, 4.026f, 0), 5 * Time.deltaTime);
@@ -27,7 +36,7 @@ public class CentImpulso : MonoBehaviour
             rigPlayer.simulated = false;
             dentro = true;
             disp = true;
-            //col.transform.position = Vector3.Lerp(col.transform.position, new Vector3(-2.203f, 1.055f, 0), Time.deltaTime);
+            audM.auTiro.Play();
         }
     }
     IEnumerator Boom()
@@ -35,6 +44,7 @@ public class CentImpulso : MonoBehaviour
         yield return new WaitForSeconds(1);
         gameObject.GetComponent<Collider2D>().enabled = false;
         rigPlayer.simulated = true;
+        audM.auAlien.Play();
         rigPlayer.AddForce(new Vector2(10, Random.Range(-15, 15)), ForceMode2D.Impulse);
         dentro = false;
         yield return new WaitForSeconds(2);

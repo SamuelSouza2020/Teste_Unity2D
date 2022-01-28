@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
          */
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && libSpace)
         {
+            audM.spinball.Play();
             Empurrao(0, 20);
             libSpace = false;
         }

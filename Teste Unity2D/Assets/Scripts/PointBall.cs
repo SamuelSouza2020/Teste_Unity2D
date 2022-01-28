@@ -15,7 +15,7 @@ public class PointBall : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            player.transform.position = new Vector3(2.67f, -2.7f, 0);
+            player.transform.position = new Vector3(2.69f, -3.981f, 0);
             //Chama o metodo IEnumerator
             StartCoroutine(Lancar());
         }
