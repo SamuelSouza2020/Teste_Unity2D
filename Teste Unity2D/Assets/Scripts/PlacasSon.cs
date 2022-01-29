@@ -8,10 +8,12 @@ public class PlacasSon : MonoBehaviour
     //Usado para mudar a cor quando a bola encostar.
 
     AtivPlacas atP;
+    AudioManager audM;
     void Start()
     {
         //Está variável está ligada ao script do GameObjeto pai "base".
         atP = transform.GetComponentInParent<AtivPlacas>();
+        audM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
     void Update()
     {
@@ -28,6 +30,7 @@ public class PlacasSon : MonoBehaviour
         {
             //Quando o player encostar, a cor fica branca, collider é desativado e acrescenta 1 valor na variavel int da 'base'
             //"base" = GameObjeto pai
+            audM.auButRed.Play();
             gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             gameObject.GetComponent<Collider2D>().enabled = false;
             atP.asCores++;
