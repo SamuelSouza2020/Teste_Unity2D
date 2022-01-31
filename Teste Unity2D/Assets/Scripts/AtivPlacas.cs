@@ -30,7 +30,7 @@ public class AtivPlacas : MonoBehaviour
             {
                 tempoCor = 0;
                 asCores = 0;
-                gaM.pontosPlayer += 30;
+                gaM.pontosPlayer += 750;
             }
         }
     }

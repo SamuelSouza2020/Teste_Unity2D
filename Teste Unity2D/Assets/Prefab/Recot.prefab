@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 839415319281170371}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.4, y: 2.76, z: 77.26421}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 651983245230551466}
   m_Father: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 9f86fc174d743f54791f32e2e0e3c04f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c5d8b3ac825c4584f85feed6b5a24f9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -153,8 +153,8 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4904020481749308584}
   serializedVersion: 7
-  lengthInSec: 0.2
-  simulationSpeed: 2
+  lengthInSec: 0.1
+  simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -228,7 +228,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.15
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -281,7 +281,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -397,7 +397,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.045
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -712,8 +712,8 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    randomizeRotationDirection: 1
+    maxNumParticles: 3000
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -773,7 +773,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 25
+    angle: 4.78
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -856,10 +856,10 @@ ParticleSystem:
     m_TextureAlphaAffectsParticles: 1
     m_TextureBilinearFiltering: 0
     randomDirectionAmount: 1
-    sphericalDirectionAmount: 0
+    sphericalDirectionAmount: 1
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.37
       mode: 0
       spread: 0
       speed:
@@ -978,7 +978,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 3000
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1031,7 +1031,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3000
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1474,8 +1474,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   UVModule:
     serializedVersion: 2
-    enabled: 0
-    mode: 0
+    enabled: 1
+    mode: 1
     timeMode: 0
     fps: 30
     frameOverTime:
@@ -1593,7 +1593,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 0}
+    - sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     flipU: 0
     flipV: 0
   VelocityModule:

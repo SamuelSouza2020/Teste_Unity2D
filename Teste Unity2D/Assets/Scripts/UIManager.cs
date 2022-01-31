@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     /// Do simples tutorial do menu inicial até a
     /// exibição da pontuação atual do player.
     /// </summary>
-    public Text txtPontos;
+    public Text txtPontos, txtPontos2;
     GameManager gameM;
     GameObject cvMenu;
     Button btPlay;
@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
         //Quando o jogo é iniciado o tempo é congelado (Time.timeScale)
         Time.timeScale = 0;
         txtPontos = GameObject.Find("txtPontos").GetComponent<Text>();
+        txtPontos2 = GameObject.Find("txtPontos2").GetComponent<Text>();
         gameM = GameObject.Find("Gerenc").GetComponent<GameManager>();
         cvMenu = GameObject.Find("CanvasMenu");
         btPlay = GameObject.Find("btPlay").GetComponent<Button>();
@@ -30,6 +31,7 @@ public class UIManager : MonoBehaviour
     {
         //Aqui atualiza em todo o tempo a pontuação do jogador
         txtPontos.text = gameM.pontosPlayer.ToString();
+        txtPontos2.text = gameM.pontosPlayer.ToString();
     }
     void IniciarGame()
     {

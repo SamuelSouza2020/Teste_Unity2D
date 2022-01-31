@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
     //Aqui é colocado um Prefab que aparecerá após a morte da bola.
     [SerializeField]
     GameObject dead;
-
     //Cada vez que a bola estiver no ponto inicial, precisa esperar 1 segundo para lançar a bola novamente
     public bool libSpace = false;
     void Start()
@@ -38,6 +37,11 @@ public class Player : MonoBehaviour
             Empurrao(0, 20);
             libSpace = false;
         }
+        //Limitador de velocidade teste
+        if(rig.velocity.magnitude > 20)
+        {
+            rig.velocity -= (rig.velocity / 2);
+        }
     }
     void Empurrao(float x, float y)
     {
@@ -48,8 +52,11 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Untagged"))
         {
-            //Toca um audio através do script AudioManager
-            audM.auBtd.Play();
+            //Verifica a velocidade da bola para tocar o efeito sonoro
+            if(rig.velocity.magnitude > 1.5f)
+            {
+                audM.auBtd.Play();
+            }
         }
         if (collision.gameObject.CompareTag("Csom"))
         {
@@ -57,23 +64,22 @@ public class Player : MonoBehaviour
              * Aqui acrescenta 2 pontos para o jogador cada vez que
              * encostar em um GameObjeto com essa Tag "Csom"
             */
-            gameManager.pontosPlayer += 2;
+            gameManager.pontosPlayer += 33;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Csom"))
         {
-            gameManager.pontosPlayer += 2;
+            gameManager.pontosPlayer += 33;
         }
         /*
          * Collider Is Trigger com Tag Speed dar mais velocidade
          * e 1 ponto a mais para o jogador.
          */
-        if (collision.gameObject.CompareTag("speed"))
+        if (collision.gameObject.CompareTag("BtAtivos"))
         {
-            gameManager.pontosPlayer++;
-            audM.auSpe.Play();
+            gameManager.pontosPlayer+= 13;
         }
         if (collision.gameObject.CompareTag("SaidaBall"))
         {
