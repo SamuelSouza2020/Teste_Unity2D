@@ -13,13 +13,13 @@ public class ScoreManager : MonoBehaviour
     public int score;
     GameManager gm;
     [SerializeField]
-    Text txtRecord;
+    //Text txtRecord;
     void Start()
     {
         //Esse comando abaixo é usado para apagar tudo salva, pode ser colocado em um botão ou etc.
         //PlayerPrefs.DeleteAll();
         gm = GameObject.Find("Gerenc").GetComponent<GameManager>();
-        txtRecord = GameObject.Find("BestRecord").GetComponent<Text>();
+        //txtRecord = GameObject.Find("BestRecord").GetComponent<Text>();
         GameStartScore();
     }
     void Update()
@@ -44,7 +44,7 @@ public class ScoreManager : MonoBehaviour
             score = 0;
             PlayerPrefs.SetInt("YourScore", score);
         }
-        txtRecord.text = score.ToString();
+        //txtRecord.text = score.ToString();
     }
     public void UpdateScore()
     {
@@ -57,7 +57,7 @@ public class ScoreManager : MonoBehaviour
         {
             score = gm.pontosPlayer;
         }
-        txtRecord.text = score.ToString();
+       // txtRecord.text = score.ToString();
         PlayerPrefs.SetInt("YourScore", score);
     }
 }

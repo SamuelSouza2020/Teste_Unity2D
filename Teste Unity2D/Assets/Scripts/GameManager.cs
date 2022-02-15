@@ -10,28 +10,62 @@ public class GameManager : MonoBehaviour
     /// Atraves dele que o jogo reinicia e
     /// coloca a pontuação do jogador
     /// </summary>
-    public int pontosPlayer;
-    public bool mort = false;
-    ScoreManager sm;
-    private void Start()
+    public int pontosPlayer, lastPontos, contCaracteres = 0;
+    public bool mort = false, gameIniciou = false, newPontos = true,
+        verif = true, btComec = false, atLista = true;
+    //ScoreManager sm;
+    SalvarScore ss;
+
+    UIManager ui;
+
+    //singleton
+    public static GameManager instance;
+
+
+    private void Awake()
     {
-        sm = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        SceneManager.sceneLoaded += Carrega;
+    }
+    //singleton
+
+    void Carrega(Scene cena, LoadSceneMode mode)
+    {
+        ss = GameObject.Find("ScorePlayer").GetComponent<SalvarScore>();
+        ui = GameObject.Find("UIManager").GetComponent<UIManager>();
+        atLista = true;
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.R) && gameIniciou)
         {
             SceneManager.LoadScene(0);
         }
         if(mort)
         {
             StartCoroutine(Reiniciar());
+            if(newPontos)
+            {
+                contCaracteres += ui.txtUser.text.Length + ui.txtPontos.text.Length;
+                lastPontos = pontosPlayer;
+                ss.saveScore();
+                newPontos = false;
+            }
         }
     }
     IEnumerator Reiniciar()
     {
-        sm.SalvarScore();
+        //sm.SalvarScore();
         yield return new WaitForSeconds(1);
+        pontosPlayer = 0;
         SceneManager.LoadScene(0);
     }
 }

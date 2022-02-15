@@ -10,11 +10,15 @@ public class UIManager : MonoBehaviour
     /// Do simples tutorial do menu inicial até a
     /// exibição da pontuação atual do player.
     /// </summary>
-    public Text txtPontos;
+    public Text txtPontos, txtUser, lastScore;
     GameManager gameM;
-    GameObject cvMenu;
-    Button btPlay;
-    void Start()
+    public GameObject cvMenu, listScore;
+    Button btPlay, btWorld, btCloseL;
+    InputField inputName;
+    [SerializeField]
+    SalvarScore salvaPontos;
+
+    void Awake()
     {
         //Quando o jogo é iniciado o tempo é congelado (Time.timeScale)
         Time.timeScale = 0;
@@ -22,14 +26,32 @@ public class UIManager : MonoBehaviour
         gameM = GameObject.Find("Gerenc").GetComponent<GameManager>();
         cvMenu = GameObject.Find("CanvasMenu");
         btPlay = GameObject.Find("btPlay").GetComponent<Button>();
+        btWorld = GameObject.Find("BtWorld").GetComponent<Button>();
+        btCloseL = GameObject.Find("BtClose").GetComponent<Button>();
+        inputName = GameObject.Find("InputName").GetComponent<InputField>();
+        txtUser = GameObject.Find("txtUser").GetComponent<Text>();
+        lastScore = GameObject.Find("lastScore").GetComponent<Text>();
+        salvaPontos = GameObject.Find("ScorePlayer").GetComponent<SalvarScore>();
+        listScore = GameObject.Find("ListScore");
+        listScore.SetActive(false);
         //Função que adiciona comando ao botão "Ao clicar"
         //Chamando o void Mencionado nos parenteses.
         btPlay.onClick.AddListener(IniciarGame);
+        btWorld.onClick.AddListener(ListaOp);
+        btCloseL.onClick.AddListener(ListaCl);
     }
     void Update()
     {
         //Aqui atualiza em todo o tempo a pontuação do jogador
         txtPontos.text = gameM.pontosPlayer.ToString();
+        if(cvMenu.activeSelf)
+        {
+            lastScore.text = gameM.lastPontos.ToString();
+        }
+    }
+    void SalvaRapido()
+    {
+        salvaPontos.saveScore();
     }
     void IniciarGame()
     {
@@ -37,7 +59,34 @@ public class UIManager : MonoBehaviour
          * Assim que o jogador inicia a partida o tempo volta 
          * ao normal e o menu é desativado.
          */
+        /*if (txtUser.text == "")
+        {
+            //Mensagem de erro, mas por enquanto deixa esse codigo
+            txtAviso.text = "Escreva seu usuário";
+            txtAviso.color = Color.red;
+            //pfm.SaveAppearance();
+        } 
+
+        else
+        {
+            //salvaPontos.VerificarUser();
+            //StartCoroutine(salvaPontos.getPlayerisExist(txtUser.text));
+            //pfm.RegisterButton();
+            cvMenu.SetActive(false);
+            gameM.gameIniciou = true;
+            Time.timeScale = 1;
+        }*/
+
         cvMenu.SetActive(false);
+        gameM.gameIniciou = true;
         Time.timeScale = 1;
+    }
+    void ListaOp()
+    {
+        listScore.SetActive(true);
+    }
+    void ListaCl()
+    {
+        listScore.SetActive(false);
     }
 }
