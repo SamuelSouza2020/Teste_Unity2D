@@ -1,5 +1,6 @@
 <?php
-	include("../score/connect.php");
+	//include("../score/connect.php");
+	include("../scripts2/connect.php");
 	
 
 	$query = "select * from scor_board WHERE player = '".$_GET["player"]."'";

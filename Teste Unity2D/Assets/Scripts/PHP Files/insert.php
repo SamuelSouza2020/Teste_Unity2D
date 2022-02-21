@@ -1,6 +1,6 @@
 <?php
 
-include("connect.php");
+include("../scripts2/connect.php");
  
 
 $player = $_POST["player"];

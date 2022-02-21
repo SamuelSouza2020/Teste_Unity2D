@@ -1,7 +1,7 @@
 <?php
 include("../score/connect.php");
 
-$sql = "CREATE TABLE yourDatabaseName.scor_board (
+$sql = "CREATE TABLE yourDatabaseName2.scor_board (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 player VARCHAR(255) NOT NULL,
 score INT NOT NULL,

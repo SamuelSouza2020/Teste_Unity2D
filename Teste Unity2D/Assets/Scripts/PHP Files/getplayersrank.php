@@ -1,5 +1,6 @@
 <?php
-	include("../score/connect.php");
+	//include("../score/connect.php");
+	include("../scripts2/connect.php");
 	
 
 	$query = "SELECT (count(*) +1) as rank FROM scor_board WHERE score > (SELECT score FROM scor_board WHERE player like '".$_GET["player"]."' order by score desc) order by score desc ";

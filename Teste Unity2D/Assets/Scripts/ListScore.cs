@@ -113,15 +113,6 @@ public class ListScore : MonoBehaviour
 
                     temp = allScores.Substring(0, allScores.IndexOf(','));
                     d = allScores.IndexOf(',') + 1;
-                    /*if(gm.atLista)
-                    {
-                        l = allScores.Length - d + gm.contCaracteres;
-                        gm.atLista = false;
-                    }
-                        
-                    else
-                        l = allScores.Length - d;
-                    Debug.Log(l);*/
                     l = allScores.Length - d;
 
                     allScores = allScores.Substring(d, l);
@@ -181,7 +172,6 @@ public class ListScore : MonoBehaviour
         for (int i = 1; i < 11; i++)
         {
             //line numbers on the board
-            //rowObj = Instantiate(textGenerate, new Vector3(-400, 150 - (i * 30), 0), new Quaternion(0, 0, 0, 0)) as GameObject;
             rowObj = Instantiate(textGenerate, new Vector3(-235, 150 - (i * 30), 0), new Quaternion(0, 0, 0, 0)) as GameObject;
             rowObj.transform.SetParent(parent.transform, false);
             if (i <= count && myList.Count > (index - 1))
@@ -197,7 +187,6 @@ public class ListScore : MonoBehaviour
             rowObj.name = "rowObj" + i;
 
             //players' names
-            //nameObj = Instantiate(textGenerate, new Vector3(-10, 150 - (i * 30), 0), new Quaternion(0, 0, 0, 0)) as GameObject;
             nameObj = Instantiate(textGenerate, new Vector3(130, 150 - (i * 30), 0), new Quaternion(0, 0, 0, 0)) as GameObject;
             nameObj.name = "nameObj" + i;
             nameObj.transform.SetParent(parent.transform, false);
@@ -213,7 +202,6 @@ public class ListScore : MonoBehaviour
             }
 
             //players' scores
-            //scoreObj = Instantiate(textGenerate, new Vector3(200, 150 - (i * 30), 0), new Quaternion(0, 0, 0, 0)) as GameObject;
             scoreObj = Instantiate(textGenerate, new Vector3(36, 150 - (i * 30), 0), new Quaternion(0, 0, 0, 0)) as GameObject;
             scoreObj.name = "scoreObj" + i;
             scoreObj.transform.SetParent(parent.transform, false);
@@ -241,12 +229,10 @@ public class ListScore : MonoBehaviour
             if (c == charToCount)
             {
                 count++;
-                //Teste
                 if(count > scorerLimit)
                 {
                     count = 1;
                 }
-                //Teste
             }
         }
         return count;

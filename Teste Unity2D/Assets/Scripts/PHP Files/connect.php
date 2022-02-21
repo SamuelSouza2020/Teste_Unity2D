@@ -1,8 +1,8 @@
 <?php
 
 	$host = "localhost";
-	$dbname = "";
-	$dbusername = "";
+	$dbname = "yourdatabasename2";
+	$dbusername = "root";
 	$dbpassword = "";
 	
 	
