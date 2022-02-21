@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
         }
         if(mort)
         {
+            mort = false;
             StartCoroutine(Reiniciar());
             if(newPontos)
             {
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
                 lastPontos = pontosPlayer;
                 ss.saveScore();
                 newPontos = false;
+                gameIniciou = false;
             }
         }
     }
@@ -67,5 +69,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         pontosPlayer = 0;
         SceneManager.LoadScene(0);
+        newPontos = true;
     }
 }

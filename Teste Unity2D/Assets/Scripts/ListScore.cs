@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 // data value object of the player's data
 namespace ScoreService.Models
@@ -37,8 +38,6 @@ public class ListScore : MonoBehaviour
 
     public GameObject parent;
 
-    GameManager gm;
-
     //Server side urls
     private string selectUrl = "select.php";
     private string getPlayerScoreUrl = "getplayerscore.php";
@@ -54,45 +53,26 @@ public class ListScore : MonoBehaviour
     // Collection of Scores List 
     private static List<ScoreService.Models.PlayerScoreDto2> myList;
 
-    //panel's buttons
-    /*public Button nextButton;
-    public Button prevButton;
-    public Button firstButton;
-    public Button lastButton;*/
-
+    private void Awake()
+    {
+        parent = GameObject.Find("ListScore");
+    }
     void Start()
     {
-        gm = GameObject.Find("Gerenc").GetComponent<GameManager>();
-        // Add listener to Next button
-        /*Button btnN = nextButton.GetComponent<Button>();
-        btnN.onClick.AddListener(nextPage);
-        // Add listener to Prev button
-        Button btnP = prevButton.GetComponent<Button>();
-        btnP.onClick.AddListener(prevPage);
-        // Add listener to First button
-        Button btnF = firstButton.GetComponent<Button>();
-        btnF.onClick.AddListener(firstPage);
-        // Add listener to Last button
-        Button btnL = lastButton.GetComponent<Button>();
-        btnL.onClick.AddListener(lastPage);*/
-
         //Get all scores from database 
         StartCoroutine(GetRequest());
 
-        //example is how to update player
-        //StartCoroutine (UpdateScore ("Adrian", 17000));
-
-        //Atualiza o valor
-        //StartCoroutine (InsertScore ("Marcio", 49000));
-
-        //example is how to get the player score
-        //StartCoroutine (getPlayerScore ("Marcio"));
-
-        //example is how to get the player rank
-        //StartCoroutine (getPlayerRank ("Adrian"));
-
         //StartCoroutine(DeleteScore());
 
+    }
+    private void Update()
+    {
+        if(!parent)
+        {
+            parent = GameObject.Find("ListScore");
+            StartCoroutine(GetRequest());
+        }
+            
     }
 
     //Get all scores from server        
@@ -100,7 +80,6 @@ public class ListScore : MonoBehaviour
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(myUrl + selectUrl + "?limit=" + scorerLimit))
         {
-            Debug.Log(scorerLimit);
             yield return webRequest.SendWebRequest();
 
             if (webRequest.isNetworkError)
@@ -124,7 +103,6 @@ public class ListScore : MonoBehaviour
                 int d = 0;
                 int l = 0;
                 int count = playersCount(allScores);
-                //Debug.Log(allScores.Length - d);
 
                 // separate from data and add myList collection
                 // received data like this => Adrain,2700,2020-01-01 00:00:00;
@@ -135,7 +113,7 @@ public class ListScore : MonoBehaviour
 
                     temp = allScores.Substring(0, allScores.IndexOf(','));
                     d = allScores.IndexOf(',') + 1;
-                    if(gm.atLista)
+                    /*if(gm.atLista)
                     {
                         l = allScores.Length - d + gm.contCaracteres;
                         gm.atLista = false;
@@ -143,7 +121,8 @@ public class ListScore : MonoBehaviour
                         
                     else
                         l = allScores.Length - d;
-                    Debug.Log(l);
+                    Debug.Log(l);*/
+                    l = allScores.Length - d;
 
                     allScores = allScores.Substring(d, l);
                     dto.PlayerName = temp;
@@ -176,52 +155,6 @@ public class ListScore : MonoBehaviour
         }
     }
 
-    private string playerScore = "";
-
-    // get the player's score from database
-    IEnumerator getPlayerScore(string player)
-    {
-        //send get request to server
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(myUrl + getPlayerScoreUrl + "?player=" + player))
-        {
-
-            yield return webRequest.SendWebRequest();
-            if (webRequest.isNetworkError || webRequest.isHttpError)
-            {
-                playerScore = "";
-            }
-            else
-            {
-                playerScore = "" + webRequest.downloadHandler.text;
-                // You can use Debug logs 
-                //Debug.Log(playerScore);
-            }
-        }
-    }
-
-    private string playerRank = "";
-
-    // get the player's rank from database
-    IEnumerator getPlayerRank(string player)
-    {
-        //send get request to server
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(myUrl + getPlayerRankUrl + "?player=" + player))
-        {
-
-            yield return webRequest.SendWebRequest();
-            if (webRequest.isNetworkError || webRequest.isHttpError)
-            {
-                playerRank = "";
-            }
-            else
-            {
-                playerRank = "" + webRequest.downloadHandler.text;
-                // You can use Debug logs 
-                //Debug.Log(playerRank);
-            }
-        }
-    }
-
     //score UI Text fields 
     GameObject rowObj = null; // line number
     GameObject nameObj = null; // player's name
@@ -237,47 +170,6 @@ public class ListScore : MonoBehaviour
             Destroy(GameObject.Find("scoreObj" + i));
         }
     }
-
-    // Get next 10 scores
-    /*void nextPage()
-    {
-        if (pageNumber < count)
-        {
-            detroyScoreObjects();
-            pageNumber += 10;
-            showScore(myList);
-        }
-    }
-
-    // Get prev 10 scores
-    void prevPage()
-    {
-        if (pageNumber != 10)
-        {
-            detroyScoreObjects();
-            pageNumber -= 10;
-            showScore(myList);
-        }
-    }
-
-    // Get last scores
-    void lastPage()
-    {
-        detroyScoreObjects();
-        pageNumber = ((count / 10) + 1) * 10;
-        showScore(myList);
-    }
-
-    // Get first scores
-    void firstPage()
-    {
-        if (pageNumber != 10)
-        {
-            detroyScoreObjects();
-            pageNumber = 10;
-            showScore(myList);
-        }
-    }*/
 
     //Show scores on the panel    
     private void showScore(List<ScoreService.Models.PlayerScoreDto2> myList)
@@ -349,6 +241,12 @@ public class ListScore : MonoBehaviour
             if (c == charToCount)
             {
                 count++;
+                //Teste
+                if(count > scorerLimit)
+                {
+                    count = 1;
+                }
+                //Teste
             }
         }
         return count;

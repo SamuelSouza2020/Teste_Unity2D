@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public Text txtPontos, txtUser, lastScore;
     GameManager gameM;
+    [SerializeField]
+    GameObject codScoreList, codSLClone;
     public GameObject cvMenu, listScore;
     Button btPlay, btWorld, btCloseL;
     InputField inputName;
@@ -55,35 +57,19 @@ public class UIManager : MonoBehaviour
     }
     void IniciarGame()
     {
-        /*
-         * Assim que o jogador inicia a partida o tempo volta 
-         * ao normal e o menu é desativado.
-         */
-        /*if (txtUser.text == "")
-        {
-            //Mensagem de erro, mas por enquanto deixa esse codigo
-            txtAviso.text = "Escreva seu usuário";
-            txtAviso.color = Color.red;
-            //pfm.SaveAppearance();
-        } 
-
-        else
-        {
-            //salvaPontos.VerificarUser();
-            //StartCoroutine(salvaPontos.getPlayerisExist(txtUser.text));
-            //pfm.RegisterButton();
-            cvMenu.SetActive(false);
-            gameM.gameIniciou = true;
-            Time.timeScale = 1;
-        }*/
-
         cvMenu.SetActive(false);
         gameM.gameIniciou = true;
+        Destroy(codSLClone);
         Time.timeScale = 1;
     }
     void ListaOp()
     {
         listScore.SetActive(true);
+        if(!codSLClone)
+        {
+            Instantiate(codScoreList, transform.position, Quaternion.identity);
+        }
+        codSLClone = GameObject.Find("HighScore(Clone)");
     }
     void ListaCl()
     {
